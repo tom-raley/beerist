@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Beerist</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+            crossorigin="anonymous">
+        <link rel="stylesheet" href="resources/css/style.css">
+    </head>
+    <body>
+        <header>
+            <h1>Beerist</h1>
+            <h2>Will I Like This Beer?</h2>
+            <form id="beerForm1">
+                <input type="text" class="input beername controls" id="pac-input" placeholder="Enter brewery and beer name">
+                <input type="text" class="input username controls" id="pac-input" placeholder="Enter your Untappd username">
+                <span onclick="getBeerRating()" class="addBtn">Search</span>
+            </form>
+            <h2 id="ratingText"></h2>
+            <br>
+            <br>
+            <h2>What beer should I get?</h2>
+            <form id="beerForm2">
+                <input type="text" class="input beername controls" id="pac-input" placeholder="Enter brewery and beer name">
+                <span onclick="getBeerRecs()" class="addBtn">Search</span>
+            </form>
+            <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+            <h2 id="ratingText"></h2>
+        </header>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+            crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+            crossorigin="anonymous"></script>
+        <script type='text/javascript' src='config.js'></script>
+        <script src="resources/main.js" async defer></script>
+    </body>
+</html>
