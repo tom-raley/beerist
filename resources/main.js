@@ -1,16 +1,24 @@
-const clientID = config.CLIENT_ID;
-const clientSecret = config.CLIENT_SECRET;
-
+const clientID = "AACE263B245DA15D906DEB6BEB9959C5B064BA0C";
+const clientSecret = "B454474D50FD59B9E9A357650B0846638D414A71";
 // Get Average Rating for Particular Beer Style Based on User Input //
 
-function getBeerRating() {
+function getBeerRating(event) {
+    event.preventDefault();
+    var ratingText = document.querySelector("#ratingText");
     //Run request to search beers
     var inputValue = document.querySelector(".beername").value;
+    var username = document.querySelector(".username").value;
     var beerSearch = new XMLHttpRequest();
     beerSearch.open("GET", "https://api.untappd.com/v4/search/beer?q=" + inputValue + "&client_id=" + clientID + "&client_secret=" + clientSecret, false);
     beerSearch.send(null);
     var beerSearchJSON = JSON.parse(beerSearch.responseText);
     console.log(beerSearchJSON);
+    if (beerSearchJSON.response.beers.count === 0) {
+        ratingText.innerHTML = "Please enter a valid brewery and beer name";
+        form.reset();
+    }
+    var breweryName = beerSearchJSON.response.beers.items[0].brewery.brewery_name;
+    var beerName = beerSearchJSON.response.beers.items[0].beer.beer_name;
     var beerSearchStyle = beerSearchJSON.response.beers.items[0].beer.beer_style;
     //Run request to retrieve ratings
     var ratingReq = new XMLHttpRequest();
@@ -32,22 +40,33 @@ function getBeerRating() {
         return rating > 0;
     })
 
-    if (positiveRatingArr.length > 0) {
+    if (positiveRatingArr.length > 0 && username.length > 0) {
         var ratingAvg = positiveRatingArr.reduce(function(curr, acc) {
             var total = curr + acc;
             return total / 2;
         })
-        
+        ratingText.innerHTML = `${breweryName} ${beerName} is a ${beerSearchStyle}. Based on your tastes, we predict a ${Math.floor(ratingAvg * 20)}% chance you will like this beer!`;
         } else {
-            console.log("Not Enough Data!")
-            return "Not Enough Data";
+             ratingText.innerHTML = "Based on your entry, there's either not enough data or you didn't enter an Untappd username. We predict a 50% chance you will like this beer. Give it a try!";
         }
-    document.querySelector("#beerForm1").reset();
-    return document.querySelector("#ratingText").innerHTML = `Based on your tastes, we predict a ${Math.floor(ratingAvg * 20)}% chance you will like this beer!`;
+
+    var form = document.querySelector("#beerForm1");
+    form.reset();
+    
     
 }
+var searchButton = document.querySelector("#searchButton");
+searchButton.addEventListener("click", getBeerRating);
+searchButton.addEventListener("keypress", function (e) {
+    if (e.key === 'Enter') {
+        getBeerRating();
+        form.reset();
+    }
+});
 
-function getBeerRecs() {
+
+
+/* function getBeerRecs() {
     //Run request to search beers
     var inputValue = document.querySelector(".beername").value;
     var beerSearch = new XMLHttpRequest();
@@ -56,6 +75,7 @@ function getBeerRecs() {
     var beerSearchJSON = JSON.parse(beerSearch.responseText);
     console.log(beerSearchJSON);
     var beerSearchStyle = beerSearchJSON.response.beers.items[0].beer.beer_style;
+
     //Run request to retrieve ratings
     var ratingReq = new XMLHttpRequest();
     var username = document.querySelector(".username").value;
@@ -89,4 +109,4 @@ function getBeerRecs() {
     document.querySelector("#beerForm1").reset();
     return document.querySelector("#ratingText").innerHTML = `Based on your tastes, we predict a ${Math.floor(ratingAvg * 20)}% chance you will like this beer!`;
 
-}
+} */
