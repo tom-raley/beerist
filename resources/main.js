@@ -57,7 +57,7 @@ function getBeerRating(event) {
 }
 var searchButton = document.querySelector("#searchButton");
 searchButton.addEventListener("click", getBeerRating);
-searchButton.addEventListener("keypress", function (e) {
+searchButton.addEventListener("keydown", function (e) {
     if (e.key === 'Enter') {
         getBeerRating();
         form.reset();
