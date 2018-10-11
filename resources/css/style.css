@@ -78,6 +78,7 @@ form {
     border-color: #000000;
     outline: none;
     background-color: rgba(255,255,255,0.9);
+    padding-left: 0.5rem;
 }
 
 .addBtn {
@@ -88,13 +89,13 @@ form {
     border-radius: 0.6rem;
     border: solid 2px black;
     transition: 0.3s;
-    background-color: rgba(255,255,255,0.8);
+    background-color: rgba(255,255,255,0.9);
 }
 
 .addBtn:hover {
     cursor: pointer;
-    background-color: rgba(255,255,255,0.6);
-    color: #010101;
+    background-color: rgba(10,10,10,1);
+    color: rgba(230,230,230,1);
 }
 
 /*List Styles*/
