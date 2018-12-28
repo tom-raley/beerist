@@ -27,6 +27,10 @@ function getBeerRating(event) {
     ratingReq.send(null);
     var ratingReqJSON = JSON.parse(ratingReq.responseText);
     console.log(ratingReqJSON);
+    if (ratingReqJSON.meta.error_detail) {
+        ratingText.innerHTML = "Please enter a valid Untappd username.";
+        form.reset();
+    }
     var beerArr = ratingReqJSON.response.checkins.items;
 
     var styleFilterArr = beerArr.filter(function (checkin) {
@@ -52,8 +56,6 @@ function getBeerRating(event) {
 
     var form = document.querySelector("#beerForm1");
     form.reset();
-    
-    
 }
 var searchButton = document.querySelector("#searchButton");
 searchButton.addEventListener("click", getBeerRating);
